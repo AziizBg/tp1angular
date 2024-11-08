@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestHttpComponent } from './test-http.component';
+import { TtcComponent } from './ttc.component';
 
-describe('TestHttpComponent', () => {
-  let component: TestHttpComponent;
-  let fixture: ComponentFixture<TestHttpComponent>;
+describe('TtcComponent', () => {
+  let component: TtcComponent;
+  let fixture: ComponentFixture<TtcComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [TestHttpComponent]
-})
+      imports: [TtcComponent]
+    })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TestHttpComponent);
+    fixture = TestBed.createComponent(TtcComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

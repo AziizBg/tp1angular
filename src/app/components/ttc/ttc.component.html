@@ -1,0 +1,57 @@
+<h1>TTC Calculator</h1>
+
+<!-- first method using ngModel -->
+<!-- <div class="d-flex ">
+<input class="form-control" (input)="calculate()" type="number" [(ngModel)]="ht" id="ht" /> 
+<input class="form-control" (input)="calculate()" type="number"  [(ngModel)]="quantity"id="quantity" /> 
+<input class="form-control" (input)="calculate()" type="number" [(ngModel)]="tva" id="tva" /> 
+</div>
+
+<div class="d-flex w-full">
+    <div class="alert alert-primary" >
+        <p>Prix unitaire TTC: ${{ttc_u}}</p>
+      </div>
+      <div class="alert alert-success" >
+        <p>Prix total TTC: ${{ttc}}</p>
+      </div>
+      <div class="alert alert-danger" >
+        <p>Discount: ${{discount | number:'1.2-2'}}</p>
+      </div>
+</div> -->
+
+<!-- 2nd method using signals -->
+<div class="d-flex">
+  <input
+    class="form-control"
+    [value]="ht_s()"
+    #input1
+    (input)="set_ht(+input1.value)"
+    id="ht"
+  />
+  <input
+    class="form-control"
+    [value]="q_s()"
+    #input2
+    (input)="set_q(+input2.value)"
+    id="quantity"
+  />
+  <input
+    class="form-control"
+    [value]="tva_s()"
+    #input3
+    (input)="set_tva(+input3.value)"
+    id="tva"
+  />
+</div>
+
+<div class="d-flex w-full">
+  <div class="alert alert-primary">
+    <p>Prix unitaire TTC: ${{ ttc_us() }}</p>
+  </div>
+  <div class="alert alert-success">
+    <p>Prix total TTC: ${{ ttc_s() }}</p>
+  </div>
+  <div class="alert alert-danger">
+    <p>Discount: ${{ d_s() | number : "1.2-2" }}</p>
+  </div>
+</div>

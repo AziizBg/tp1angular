@@ -1,16 +1,98 @@
-<div class="row">
-  <div class="col">
-    <ol class="list-group">
-      <li *ngFor="let todo of todos" class="list-group-item">
-        {{todo.name}} : {{todo.content}}
-        <i (click)="deleteTodo(todo)" class="fa fa-trash" aria-hidden="true"></i>
-      </li>
-    </ol>
+<div class="">
+  <div class="d-flex m-2">
+    <input
+      [(ngModel)]="todo.name"
+      type="text"
+      class="form-control m-2"
+      placeholder="name"
+    />
+    <input
+      [(ngModel)]="todo.content"
+      type="text"
+      class="form-control m-2"
+      placeholder="content"
+    />
+    <button
+      (click)="addTodo()"
+      [disabled]="!todo.name.trim() || !todo.content.trim()"
+      class="btn btn-primary m-2"
+    >
+      add
+    </button>
   </div>
-  <div class="col">
-    name: <input [(ngModel)]="todo.name" type="text" class="form-control">
-    content: <input [(ngModel)]="todo.content" type="text" class="form-control">
-    <button (click)="addTodo()" [disabled]="!todo.name.trim() || !todo.content.trim()"
-      class="btn btn-primary m-2">add</button>
+
+  <div class="row">
+    <div class="alert alert-secondary col">
+      <h4>Waiting Todos</h4>
+      <ol class="list-group">
+        @for (todo of todos_s(); track $index) { @if (todo.status =="waiting") {
+        <li class="list-group-item">
+          {{ todo.name }} : {{ todo.content }}
+          <i
+            (click)="deleteTodo(todo)"
+            class="fa fa-trash"
+            aria-hidden="true"
+          ></i>
+          <i
+            (click)="setInProgress($index)"
+            class="fa fa-arrow-right"
+            aria-hidden="true"
+            style="margin-left: 5px"
+          ></i>
+        </li>
+        } }
+      </ol>
+    </div>
+
+    <div class="alert alert-warning col">
+      <h4>In Progress Todos</h4>
+      <ol class="list-group">
+        @for (todo of todos_s(); track todo) { @if (todo.status =="in progress")
+        {
+        <li class="list-group-item">
+          {{ todo.name }} : {{ todo.content }}
+          <i
+            (click)="deleteTodo(todo)"
+            class="fa fa-trash"
+            aria-hidden="true"
+          ></i>
+          <i
+            (click)="setWaiting($index)"
+            class="fa fa-arrow-left"
+            aria-hidden="true"
+            style="margin-left: 5px"
+          ></i>
+          <i
+            (click)="setDone($index)"
+            class="fa fa-arrow-right"
+            aria-hidden="true"
+            style="margin-left: 5px"
+          ></i>
+        </li>
+        }}
+      </ol>
+    </div>
+
+    <div class="alert alert-success col">
+      <h4>Done Todos</h4>
+      <ol class="list-group">
+        @for (todo of todos_s(); track todo) { @if (todo.status =="done") {
+        <li class="list-group-item">
+          {{ todo.name }} : {{ todo.content }}
+          <i
+            (click)="deleteTodo(todo)"
+            class="fa fa-trash"
+            aria-hidden="true"
+          ></i>
+          <i
+            (click)="setWaiting($index)"
+            class="fa fa-arrow-left"
+            aria-hidden="true"
+            style="margin-left: 5px"
+          ></i>
+        </li>
+        }}
+      </ol>
+    </div>
   </div>
 </div>
